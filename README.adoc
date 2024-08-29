@@ -1,7 +1,17 @@
 = Macports Guide Migration to AsciiDoc
 
+== Introduction
 Migration of https://github.com/macports/macports-guide to Asciidoc.
 
 Very early stages.
 
 https://guide.macports.com is where the most up to date docs are.
+
+== Building
+
+Run the following at the top
+[source]
+----
+$ bundle install
+$ rake
+----
