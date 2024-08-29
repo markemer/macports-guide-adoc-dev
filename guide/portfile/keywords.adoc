@@ -1,0 +1,512 @@
+MacPorts keywords are used to specify required or optional items within
+a Portfile, or to override default options used by MacPorts base for
+individual ports. Keywords are to be used within the ``global'' and
+``variant'' sections of Portfiles, and not within optional port phase
+declarations.
+
+The global keywords listed below specify information for ports as a
+whole, whereas the keywords listed under a port phase specify
+information to be used during a particular installation phase.
+
+PortSystem::
+  The first non-comment line of every Portfile; it should be followed by
+  PortGroup inclusions (if any) and then a blank line. It defines which
+  version of the Portfile interpreter will be used. (There is currently
+  only one version.)
+  +
+....
+PortSystem          1.0
+....
+name::
+  The name of the port. To avoid special interpretation by shells and
+  the like, names should contain only alphanumeric characters,
+  underscores, dashes and periods. For projects whose proper names
+  contain ``+'' characters, change these to ``x'' (e.g., ``libstdc++''
+  becomes ``libstdcxx'').
+  +
+....
+name                foo
+....
+version::
+  The version of the software. Version numbers are often dotted
+  decimals, though some projects may use other formats.
+  +
+  The version keyword should adhere as closely as possible to the format
+  used by the upstream project (e.g., as reported by a program's `-v` or
+  `--version` flag or on the project's web site), omitting any preceding
+  `v` or other extraneous characters that are not part of the version
+  number. Especially, the version should not be misformatted merely to
+  accommodate an unusual distfile name. For example, if the distfile
+  name is `foo-v1_2_3.tar.gz` and the project reports its version as
+  `v1.2.3`, the version keyword should be set to `1.2.3` and distname
+  should be overridden as needed (ideally by transforming the version
+  using a procedure such as `string map`).
+  +
+  When updating the version of a port that installs a dynamic library,
+  check (by examining the second line of output from the `otool -L`
+  command run on the library before and after upgrading) whether its
+  install name has changed. If it has, increase the revision of every
+  port that links with the library to rebuild it with the new library.
+  +
+....
+version             1.23.45
+....
+revision::
+  An optional integer (the default is `0`) that is incremented when a
+  port is updated independently of the version of the software. The
+  revision line usually follows the version line.
+  +
+  In Portfiles that have subports, it is often appropriate for each
+  subport (including the main port) to have a separate revision line.
+  (This does not usually apply to Portfiles for Perl, PHP, Python, or
+  Ruby modules which create numerous similar subports for the same
+  version of the software.)
+  +
+  It is recommended to set the revision in all ports, even if the
+  revision is 0. This makes it easier for other developers to see where
+  to increase the revision in your port, should that need arise. This is
+  especially helpful for Portfiles that have subports.
+  +
+  When increasing the revision in a Portfile with subports, consider
+  carefully which of the subports (possibly including the main port)
+  need to have their revisions increased.
+  +
+  When increasing the revision in a Portfile that does not have any
+  revision lines yet, take a moment to check if the Portfile has
+  subports.
+  +
+  Just like when a port's version increases, a port is considered
+  outdated when its revision increases. To avoid causing users to
+  rebuild ports unnecessarily, don't increase the revision unless doing
+  so would result in a change for users who already have the ports
+  installed.
+  +
+  Some examples of situations in which a port's revision should usually
+  be increased:
+  +
+  * changing configure arguments or build flags or any other change that
+  will cause the installed files to be different
+  * installing additional files, such as documentation, or removing any
+  files which had previously been installed
+  * changing the names or locations of any installed files
+  * adding a dependency that causes the installed files to be different
+  * a library dependency's install_name has changed
+  * removing a variant that a user might have installed
+  * adding a variant name to default_variants
+  +
+  Some examples of situations in which a port's revision should not
+  usually be increased:
+  +
+  * fixing a build failure
+  * adding a dependency to depends_fetch, depends_extract,
+  depends_patch, depends_build, or depends_test
+  * adding a direct dependency on a port that was already an indirect
+  dependency
+  * changing a dependency's type, e.g. from depends_lib to depends_build
+  * removing a dependency that is not used
+  * setting or changing the port's license
+  * adding a new non-default variant
+  * removing a variant name from default_variants
+  * changing comments or whitespace in the Portfile
+  * any other change to the Portfile that does not change the files it
+  installs
+  +
+....
+revision            1
+....
+epoch::
+  An optional integer (the default is `0`) that must be increased when a
+  port is updated to a version that appears (according to the `vercmp`
+  procedure's version number comparison algorithm) to be less than the
+  previous version. For example, updating from `2.0-rc1` to `2.0`, or
+  from `1.10` to `1.2`, or from `20070928` to `1.0`.
+  +
+  The purpose of increasing the epoch is to cause MacPorts to consider a
+  port to be outdated, even if that wouldn't otherwise be the case due
+  to the specific version numbers. Don't set the epoch unless it's
+  required. In most ports, the version number advances according to the
+  normal dotted-decimal sequence, so most ports will never have a need
+  to set the epoch.
+  +
+  Some Portfile authors have used large epoch values that look like
+  dates in YYYYMMDD format (e.g., `20091231`). When it is necessary to
+  increase the epoch in such ports, the new epoch can be set to the
+  current date. It is not recommended to use this format when adding an
+  epoch to a port that does not already have one; instead, just set the
+  epoch to `1`, and when needing to increase an existing small epoch,
+  increase it by 1.
+  +
+....
+epoch               1
+....
+  +
+  [NOTE]
+  ====
+  A port's epoch can never be decreased. Removing the epoch from the
+  port would decrease it to its default value of `0`, so once added to a
+  port the epoch can also never be removed. When adding an epoch, take
+  extra care to ensure that it is necessary, since a mistakenly added
+  epoch cannot be undone. In Portfiles that have subports with different
+  software versions, consider whether the epoch needs to be increased in
+  all subports or only in some of them.
+  ====
+categories::
+  The category under which the ported software falls. The first category
+  should be the same as the directory within which the Portfile is
+  stored; secondary and tertiary categories may be selected.
+  +
+....
+categories          net security
+....
+maintainers::
+  A port's maintainers are the people who have agreed to take
+  responsibility for keeping the port up-to-date. Most ports have only a
+  single maintainer, but some ports have two or more co-maintainers. The
+  `maintainers` keyword lists the maintainers' GitHub usernames or email
+  addresses. GitHub usernames start with an `@` symbol. Email addresses
+  are preferably listed in the obfuscated form below to hide them from
+  spambots:
+  +
+  * For addresses in domain @macports.org, simply omit the domain name.
+  * For addresses in other domains, e.g., account@example.org, use the
+  convention `example.org:account` to specify the address.
+  +
+  In the example below, the port is maintained by a GitHub user named
+  neverpanic, and the owners of the two email addresses
+  jdoe@macports.org and julesverne@example.org
+  +
+....
+maintainers         @neverpanic \
+                    jdoe \
+                    example.org:julesverne
+....
+  +
+  Braces can be used to express that these refer to the same person, for
+  example the GitHub username and an email. In the following example,
+  the port is maintained by a GitHub user named jverne, that can also be
+  contacted directly at julesverne@example.org.
+  +
+....
+maintainers         {@jverne example.org:julesverne}
+....
+  +
+  [NOTE]
+  ====
+  The address `nomaintainer` designates a port that is not maintained by
+  anybody and may be modified by any committer. Feel free to claim
+  maintainership of a nomaintainer port if desired. The address
+  `openmaintainer` designates a port that has a maintainer who allows
+  minor changes to be committed without his or her prior approval. Port
+  maintainers who are not committers are encouraged to add
+  `openmaintainer` to their ports.
+  ====
+description::
+  A short sentence fragment describing the software.
+  +
+....
+description         a classic shooter arcade game
+....
+long_description::
+  One or more sentences describing the software.
+  +
+  The long description can be based on a description provided by the
+  upstream project (e.g., in its readme or on its web site) but avoid
+  repeating information already present elsewhere in the Portfile, such
+  as the software's license (see the `license` keyword) or the platforms
+  on which it runs (see the `platforms` keyword), and avoid including
+  information irrelevant to a MacPorts user, such as compilation
+  instructions or other steps the Portfile has already performed for the
+  user. More specific usage instructions are best left to the `notes`
+  keyword.
+  +
+  If a port provides a program that is different from the port name, it
+  can be a good idea to include the program name in the long description
+  so that a user could find it by searching.
+  +
+  Long descriptions are usually a single paragraph. MacPorts will
+  word-wrap long lines to the terminal width as needed. Break long lines
+  with escaped newlines for better legibility within the Portfile. If
+  literal newlines need to be displayed to the user, they can be
+  inserted using `\n`. Place the `\n` at the beginning of the next line,
+  not at the end of the previous line. To create a new paragraph, insert
+  two newlines.
+  +
+  Sometimes the port's name and short description are reused as part of
+  the long description. When referencing the `description` keyword (or
+  any other list keyword with more than one item), it should be preceded
+  with the expand operator.
+  +
+....
+long_description    ${name} is {*}${description} derived from \
+                    the game alien-munchers.  Not suitable for \
+                    children under two years old.
+....
+  +
+....
+long_description    foobar provides the following programs: \
+                    \n \
+                    \n* foo, a lorem ipsum utility \
+                    \n* bar, a high-performance amet consectetur \
+                    \n* baz, an eiusmod tempor converter
+....
+homepage::
+  The software's primary web site.
+  +
+  Usually the homepage should be a URL that does not redirect to another
+  URL. For example, if an http URL redirects to an https URL, list the
+  https URL. Or if a URL without a trailing slash redirects to the URL
+  with the trailing slash, list the URL with the trailing slash. If the
+  project advertises a short URL that redirects to a longer URL, it is
+  acceptable to list the short URL despite the redirect.
+  +
+  When the homepage is just a hostname with no path component, don't
+  include a trailing slash.
+  +
+....
+homepage            https://www.example.org/apps/
+....
+  +
+....
+homepage            https://www.example.com
+....
+platforms::
+  A list of the platforms on which the port is expected to work.
+  Defaults to `darwin` if not set. Consists of a list of platform
+  specifiers, each of which is at minimum a platform name and may also
+  include version information. Possible platform names are:
+  +
+  * `darwin` (equivalent to specifying both `macosx` and `puredarwin`)
+  * `macosx` (macOS as distributed by Apple)
+  * `puredarwin` (the open-source Darwin OS without Apple's proprietary
+  components)
+  * `freebsd`
+  * `linux`
+  * `netbsd`
+  * `openbsd`
+  * `solaris`
+  * `sunos`
+  +
+  A platform specifier that is just a platform name is purely
+  informational for users; it is displayed in the output of `port info`
+  but has no other effect. Ports for software that does not require
+  macOS-specific features can generally use the default value of
+  `darwin`. Most ports use this value on the presumption that they would
+  work on Pure Darwin, even if that has not been attempted. Ports for
+  software that is known to require macOS-specific features should use
+  `macosx`. Including the xcode portgroup will change the default to
+  `macosx` automatically.
+  +
+  See also `os.platform`.
+  +
+....
+platforms           macosx freebsd
+....
+  +
+  (Added: MacPorts 2.8.0) A platform specifier can also be a list, where
+  the first element is a platform name and subsequent elements are pairs
+  of comparison operators and versions. This indicates the version
+  ranges of each platform that the port works on.
+  +
+  If a platform specifier's name matches `${os.platform}`, then each
+  comparison operator in the specifier is applied to `${os.version}` as
+  the left operand and the listed version as the right operand. If any
+  of the comparisons evaluate to false, then the default value of
+  `known_fail` is changed to `yes`.
+  +
+  Possible operators are: `<`, `<=`, `>`, `>=`, `==`, `!=`. The `==` and
+  `!=` operators support globbing. The rest of the operators compare as
+  per the `vercmp` command.
+  +
+  Examples:
+  +
+  A port that works on Darwin 12 and later:
+  +
+....
+platforms           {darwin >= 12}
+....
+  +
+  A port that works on Darwin versions between 10 and 19 inclusive:
+  +
+....
+platforms           {darwin >= 10 < 20}
+....
+  +
+  A port that works on Darwin versions between 10 and 19 but not version
+  12.x:
+  +
+....
+platforms           {darwin >= 10 != 12.* < 20}
+....
+  +
+  The special value `any` can also be used to indicate that a port will
+  install identical files across platforms or platform versions. This
+  can help to reduce the number of binary archives that have to be
+  built. In most cases, this is only applicable to ports that don't
+  install any architecture-specific files.
+  +
+  Ports that install identical files on any platform should use:
+  +
+....
+platforms           any
+....
+  +
+  Ports that install identical files on any Darwin version, but may
+  install different files on other platforms (or don't work on other
+  platforms), should use:
+  +
+....
+platforms           {darwin any}
+....
+  +
+  It is possible to combine `any` with version ranges. A port that only
+  works on Darwin 17 or later and installs identical files regardless of
+  the Darwin version would do this:
+  +
+....
+platforms           {darwin any >= 17}
+....
+supported_archs::
+  The CPU architectures for which this port can be built. Archs
+  currently supported by macOS are: arm64, i386, ppc, ppc64, x86_64. If
+  this option is not set, it is assumed that the port can build for all
+  archs. If a port does not install any architecture-specific files, use
+  the special value `noarch`.
+  +
+  If the building architecture isn't among supported_archs, port fails
+  with an error message, except when building on x86_64 and
+  supported_archs contains i386 or when building on ppc64 and
+  supported_archs contains ppc, in which case the port will be built in
+  32-bit mode.
+  +
+....
+supported_archs     i386 ppc
+....
+  +
+....
+supported_archs     noarch
+....
+license::
+  The proper format for license consists of the license name, followed
+  by a hyphen and number if indicating a specific version. A space
+  should be placed between licenses if there is more than one that
+  applies. If an element in the license list is itself a list, it is
+  interpreted as offering a choice of any one of the licenses in the
+  sub-list.
+  +
+  If the version number is a ``.0'' version, the ``.0'' should be
+  omitted to make the version an integer. If the author gives the choice
+  of using a given license or ``any later version'' of it, append a plus
+  sign (+) to the version number. If the version specified in this case
+  is also the earliest version, just leave out the version number
+  entirely since it implies all versions.
+  +
+....
+license             GPL-3
+....
+  +
+....
+license             {freetype GPL}
+....
+license_noconflict::
+  By default, it is assumed that ports may use libraries or headers from
+  their dependencies and thus form a derivative work. A dependency with
+  an incompatible license thus prevents the port from being distributed
+  in binary form. If a dependency with an incompatible license is not
+  used in such a way that a derivative work is formed, or should not
+  prevent binary distribution for any other reason, add its name to this
+  list.
+  +
+....
+license_noconflict  openssl
+....
+  +
+....
+license_noconflict  readline gdbm
+....
+use_xcode::
+  (Added: MacPorts 2.6.0) By default, it is assumed on macOS that ports
+  will not need tools from Xcode.app unless (1) Command Line Tools
+  aren't installed, (2) you are on an old version of Mac OS X that does
+  not support the xcode-select mechanism, or (3) the port uses
+  `build.type xcode` or includes the `xcode` PortGroup. If a port needs
+  to use Xcode (i.e., xcodebuild) in any way, `use_xcode yes` should be
+  set or the port should include the xcode PortGroup. The environment
+  variable DEVELOPER_DIR is now exported during all build phases, set to
+  the value of `${configure.developer_dir}` which may be the directory
+  of Xcode or CLT depending on use_xcode. This means that libxcselect
+  shims (i.e., /usr/bin/clang) will resolve to Xcode/CLT. Build systems
+  that ignore the environment may accidentally use Xcode which will
+  cause a failure in trace mode.
+  +
+....
+use_xcode           no
+....
+  +
+....
+use_xcode           yes
+....
+known_fail::
+  Setting this option to `yes` indicates that the port is known not to
+  work. Users will be told this and asked for confirmation if they
+  attempt to install it, and the Buildbot and GitHub Actions will not
+  attempt to build it.
+  +
+  Don't set this option conditionally on the basis of anything that can
+  change dynamically, such as `$build_arch` or `$xcodeversion`, since it
+  will be recorded in the static PortIndex. If a port works only on
+  certain OS versions, use the `platforms` option to indicate this
+  rather than setting `known_fail` directly.
+  +
+....
+known_fail           yes
+....
+macosx_deployment_target::
+  The macOS release to target.
+  +
+  During the configure phase, environment variable
+  `MACOSX_DEPLOYMENT_TARGET` is set to the specified value.
+  +
+  This option is also used when building binary packages, via
+  `port pkg`, `port mpkg`, `port dmg`, and `port mdmg`. Specifically,
+  MacPorts will create a package/DMG that is compatible with the desired
+  macOS release. In addition, it is used to set version-related metadata
+  for the Apple installer package, including `allowed-os-versions`.
+  +
+....
+macosx_deployment_target 10.8
+....
+installs_libs::
+  By default, it is assumed that ports may install libraries or headers
+  that can be incorporated into their dependents. If this is not the
+  case, set `installs_libs` to `no`. This means that this port's
+  dependents need not check that it is installed for the same
+  architectures as them; that it is permissible to distribute binaries
+  of the dependents even if their licenses conflict with the license of
+  this port; and that updates to this port can never result in broken
+  dynamic linking in its dependents.
+  +
+....
+installs_libs        no
+....
+add_users::
+  Consists of a list of usernames and settings. At appropriate times
+  during the port installation process, a user will be created for each
+  username with the corresponding settings.
+  +
+  Settings are of the form `name=value`. A setting applies to the
+  username that appeared most recently before it in the list.
+  +
+  Applicable options are: `group`, `gid` (may be used instead of
+  `group`), `passwd`, `realname`, `home`, and `shell`.
+  +
+....
+add_users           squid \
+                    group=squid \
+                    realname=Squid\ Proxy \
+                    home=${prefix}/var/squid
+....
+  +
+....
+add_users           user1 group=mygroup \
+                    user2 group=mygroup
+....

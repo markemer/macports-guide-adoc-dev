@@ -1,0 +1,38 @@
+[[reference]]
+== Portfile Reference
+
+This chapter serves as a reference for the major elements of a Portfile:
+port phases, dependencies, StartupItems, variables, keywords, and Tcl
+extensions.
+
+[[reference.keywords]]
+=== Global Keywords
+include::keywords.adoc[]
+
+[[reference.variables]]
+=== Global Variables
+include::variables.adoc[]
+
+[[reference.phases]]
+=== Port Phases
+include::phase.adoc[]
+
+[[reference.dependencies]]
+=== Dependencies
+include::dependencies.adoc[]
+
+[[reference.variants]]
+=== Variants
+include::variants.adoc[]
+
+[[reference.tcl-extensions]]
+=== Tcl Extensions & Useful Tcl Commands
+include::tcl.adoc[]
+
+[[reference.startupitems]]
+=== StartupItems
+include::startupitem.adoc[]
+
+[[reference.livecheck]]
+=== Livecheck / Distcheck
+include::livecheck.adoc[]

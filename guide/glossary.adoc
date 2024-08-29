@@ -1,0 +1,72 @@
+[[guide-terms]]
+== MacPorts Guide Glossary
+
+This section defines a number of words which may be new to the reader.
+These are all defined in the context of Macports instead of as general
+purpose definition.
+
+[[glossary]]
+== 
+
+activate phase::
+automake::
+autoconf::
+API::
+destroot phase::
+port binary::
+build::
+build phase::
+checksum::
+  A checksum is a small piece of data, derived from an original that can
+  be used to ensure that two files are identical.
+checksum phase::
+compile::
+configure::
+configure phase::
+dependency::
+destroot phase::
+diff::
+extract phase::
+fetch phase::
+free software::
+global keyword::
+gunzip::
+keyword::
+keyword argument modifier::
+keyword list modifier::
+library::
+MacPorts::
+  A system for compiling, installing, and managing free and open source
+  software comprised of an infrastructure called MacPorts base and a
+  collection of ports. MacPorts current port collection defines the
+  software may be installed.
+open source software::
+patch phase::
+patch file::
+pextlib::
+phase::
+port::
+port command::
+port image::
+port maintainer::
+port phase::
+port phase keyword::
+PortGroup::
+Portfile::
+registry::
+rsync::
+selfupdate::
+shell::
+StartupItem::
+Subversion::
+sync::
+tar::
+Tcl::
+Tcl extension::
+Trac::
+Unix::
+unzip::
+variant::
+Xcode Tools::
+X11::
+zip::
