@@ -1,5 +1,6 @@
 = MacPorts Guide
 :toc: left
+:current-version: 2.10.1
 
 include::intro.adoc[]
 

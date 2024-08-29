@@ -1,6 +1,3 @@
-[[internals.tests]]
-== Tests
-
 The MacPorts testing framework uses http://wiki.tcl.tk/1502[tcltest] for
 its unit tests as well as regression tests. The framework was developed
 during Google Summer of Code 2013 by Marius Coțofană (marius@).
@@ -21,7 +18,7 @@ file. Test procs should maintain the order in the original script and
 should be independent of one another.
 
 [[internals.tests.running]]
-=== Running tests
+==== Running tests
 
 Tests can be run only on an installed version of MacPorts (so make sure
 you have run `sudo make install`).
@@ -97,7 +94,7 @@ and can be run just as unit tests, using `make test` from the parent
 directory.
 
 [[internals.tests.mustknow]]
-=== Must know
+==== Must know
 
 * regression tests have their own directory, found in
 https://github.com/macports/macports-base/tree/master/tests/test/[trunk/base/tests/test]
@@ -124,7 +121,7 @@ this is done automatically if they are run using the 'test' target in
 the Makefile, with root privileges
 
 [[internals.tests.sample-file]]
-=== Sample file
+==== Sample file
 
 ....
 # include required tcltest package and set namespace
@@ -210,7 +207,7 @@ cleanupTests
 ....
 
 [[internals.tests.addtional-files]]
-=== Additional files
+==== Additional files
 
 * In all tests we use this
 https://github.com/macports/macports-base/blob/master/src/macports1.0/tests/Portfile[Portfile].
@@ -228,7 +225,7 @@ https://github.com/macports/macports-base/blob/master/tests/test/library.tcl[lib
 of useful procs in regression testing.
 
 [[internals.tests.resources]]
-=== Resources
+==== Resources
 
 * http://wiki.tcl.tk/1502[Tcltest official wiki page]
 * http://web.archive.org/web/20080617153002/www.tclscripting.com/articles/apr06/article1.html[Getting

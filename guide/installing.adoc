@@ -142,26 +142,26 @@ link:#using.port.selfupdate[selfupdate] operation to update the ports
 tree and MacPorts base with the latest release.
 
 [arabic]
-. Download the latest `MacPorts-2.10.0-....pkg` installer from the
+. Download the latest `MacPorts-{current-version}-....pkg` installer from the
 releases https://github.com/macports/macports-base/releases/[on GitHub].
 Here are direct links for the latest versions of macOS:
 +
 macOS 14 Sonoma:::
-  https://github.com/macports/macports-base/releases/download/v2.10.0/MacPorts-2.10.0-14-Sonoma.pkg[MacPorts-2.10.0-14-Sonoma.pkg]
+  https://github.com/macports/macports-base/releases/download/v{current-version}/MacPorts-{current-version}-14-Sonoma.pkg[MacPorts-{current-version}-14-Sonoma.pkg]
 macOS 13 Ventura:::
-  https://github.com/macports/macports-base/releases/download/v2.10.0/MacPorts-2.10.0-13-Ventura.pkg[MacPorts-2.10.0-13-Ventura.pkg]
+  https://github.com/macports/macports-base/releases/download/v{current-version}/MacPorts-{current-version}-13-Ventura.pkg[MacPorts-{current-version}-13-Ventura.pkg]
 macOS 12 Monterey:::
-  https://github.com/macports/macports-base/releases/download/v2.10.0/MacPorts-2.10.0-12-Monterey.pkg[MacPorts-2.10.0-12-Monterey.pkg]
+  https://github.com/macports/macports-base/releases/download/v{current-version}/MacPorts-{current-version}-12-Monterey.pkg[MacPorts-{current-version}-12-Monterey.pkg]
 macOS 11 Big Sur:::
-  https://github.com/macports/macports-base/releases/download/v2.10.0/MacPorts-2.10.0-11-BigSur.pkg[MacPorts-2.10.0-11-BigSur.pkg]
+  https://github.com/macports/macports-base/releases/download/v{current-version}/MacPorts-{current-version}-11-BigSur.pkg[MacPorts-{current-version}-11-BigSur.pkg]
 macOS 10.15 Catalina:::
-  https://github.com/macports/macports-base/releases/download/v2.10.0/MacPorts-2.10.0-10.15-Catalina.pkg[MacPorts-2.10.0-10.15-Catalina.pkg]
+  https://github.com/macports/macports-base/releases/download/v{current-version}/MacPorts-{current-version}-10.15-Catalina.pkg[MacPorts-{current-version}-10.15-Catalina.pkg]
 macOS 10.14 Mojave:::
-  https://github.com/macports/macports-base/releases/download/v2.10.0/MacPorts-2.10.0-10.14-Mojave.pkg[MacPorts-2.10.0-10.14-Mojave.pkg]
+  https://github.com/macports/macports-base/releases/download/v{current-version}/MacPorts-{current-version}-10.14-Mojave.pkg[MacPorts-{current-version}-10.14-Mojave.pkg]
 macOS 10.13 High Sierra:::
-  https://github.com/macports/macports-base/releases/download/v2.10.0/MacPorts-2.10.0-10.13-HighSierra.pkg[MacPorts-2.10.0-10.13-HighSierra.pkg]
+  https://github.com/macports/macports-base/releases/download/v{current-version}/MacPorts-{current-version}-10.13-HighSierra.pkg[MacPorts-{current-version}-10.13-HighSierra.pkg]
 macOS 10.12 Sierra:::
-  https://github.com/macports/macports-base/releases/download/v2.10.0/MacPorts-2.10.0-10.12-Sierra.pkg[MacPorts-2.10.0-10.12-Sierra.pkg]
+  https://github.com/macports/macports-base/releases/download/v{current-version}/MacPorts-{current-version}-10.12-Sierra.pkg[MacPorts-{current-version}-10.12-Sierra.pkg]
 . Double-click the downloaded package installer to perform the default
 ``easy'' install.
 . After this step you are done already, MacPorts is now installed and
@@ -174,7 +174,7 @@ $ port version
 ....
 +
 ....
-Version: 2.10.0
+Version: {current-version}
 ....
 +
 In case of problems such as ``command not found'', make sure that you
@@ -191,13 +191,13 @@ below.
 
 [arabic]
 . Download and extract the
-https://distfiles.macports.org/MacPorts/MacPorts-2.10.0.tar.bz2[
-MacPorts 2.10.0 tarball]. Either do so using your browser and the
+https://distfiles.macports.org/MacPorts/MacPorts-{current-version}.tar.bz2[
+MacPorts {current-version} tarball]. Either do so using your browser and the
 Finder, or use the given commands in a terminal window.
 +
 ....
-$ curl -O https://distfiles.macports.org/MacPorts/MacPorts-2.10.0.tar.bz2
-$ tar xf MacPorts-2.10.0.tar.bz2
+$ curl -O https://distfiles.macports.org/MacPorts/MacPorts-{current-version}.tar.bz2
+$ tar xf MacPorts-{current-version}.tar.bz2
 ....
 . Afterwards, perform the commands shown in the terminal window. If you
 wish to use a path other than `/opt/local`, follow the instructions for
@@ -205,7 +205,7 @@ link:#installing.macports.source.multiple[installing multiple copies of
 MacPorts] instead.
 +
 ....
-$ cd MacPorts-2.10.0/
+$ cd MacPorts-{current-version}/
 $ ./configure
 $ make
 $ sudo make install
@@ -244,7 +244,7 @@ $ mkdir -p /opt/mports
 $ cd /opt/mports
 $ git clone https://github.com/macports/macports-base.git
 $ cd macports-base
-$ git checkout v2.10.0  # skip this if you want to use the development version
+$ git checkout v{current-version}  # skip this if you want to use the development version
 ....
 . Build and Install MacPorts
 +

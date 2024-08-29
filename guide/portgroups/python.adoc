@@ -146,7 +146,7 @@ python.add_archflags     no
 ....
 
 [[reference.portgroup.python.variables]]
-=== python PortGroup Specific Variables
+==== python PortGroup Specific Variables
 
 When the python PortGroup is declared within a Portfile, the following
 variables are provided.

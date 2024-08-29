@@ -325,4 +325,6 @@ Registry using the default receipt storage mechanism chosen in
           {args}`::
   Write changes to the dependency map.
 
+[[internals.tests]]
+=== Tests
 include::tests.adoc[]

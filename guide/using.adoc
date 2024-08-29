@@ -48,8 +48,8 @@ $ sudo port selfupdate
 
 ....
 ---> Updating MacPorts base sources using rsync
-MacPorts base version 2.10.0 installed,
-MacPorts base version 2.10.0 downloaded.
+MacPorts base version {current-version} installed,
+MacPorts base version {current-version} downloaded.
 ---> Updating the ports tree
 ---> MacPorts base is already the latest version
 ....
@@ -61,9 +61,9 @@ latest released version. In that case, you will see this message:
 ....
 ---> Updating MacPorts base sources using rsync
 MacPorts base version 2.9.3 installed,
-MacPorts base version 2.10.0 downloaded.
+MacPorts base version {current-version} downloaded.
 ---> Updating the ports tree
----> MacPorts base is outdated, installing new version 2.10.0
+---> MacPorts base is outdated, installing new version {current-version}
 Installing new MacPorts release in /opt/local as root:admin; permissions 755
 ....
 
@@ -1121,8 +1121,8 @@ $ sudo port selfupdate
 ....
 Password:
 ---> Updating MacPorts base sources using rsync
-MacPorts base version 2.10.0 installed,
-MacPorts base version 2.10.0 downloaded.
+MacPorts base version {current-version} installed,
+MacPorts base version {current-version} downloaded.
 ---> Updating the ports tree
 ---> MacPorts base is already the latest version
 
