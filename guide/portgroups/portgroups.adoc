@@ -3,23 +3,6 @@
 
 include::intro.adoc[]
 
-include::github.adoc[]
-
-include::gnustep.adoc[]
-
-include::golang.adoc[]
-
-include::java.adoc[]
-
-include::perl.adoc[]
-
-include::python.adoc[]
-
-include::ruby.adoc[]
-
-include::xcode.adoc[]
-
-
 === active_variants
 
 === apache2
@@ -76,7 +59,9 @@ include::xcode.adoc[]
 
 === gitea
 
+[[reference.portgroup.github]]
 === github
+include::github.adoc[]
 
 === gitlab
 
@@ -86,11 +71,15 @@ include::xcode.adoc[]
 
 === gnuradio
 
+[[reference.portgroup.gnustep]]
 === gnustep
+include::gnustep.adoc[]
 
 === gobject_introspection
 
+[[reference.portgroup.golang]]
 === golang
+include::golang.adoc[]
 
 === gpg_verify
 
@@ -102,7 +91,9 @@ include::xcode.adoc[]
 
 === janet
 
-=== java
+[[reference.portgroup.java]]
+=== PortGroup java
+include::java.adoc[]
 
 === kde4
 
@@ -138,13 +129,17 @@ include::xcode.adoc[]
 
 === octave
 
+[[reference.portgroup.perl]]
 === perl5
+include::perl.adoc[]
 
 === php
 
 === pure
 
+[[reference.portgroup.python]]
 === python
+include::python.adoc[]
 
 === qmake
 
@@ -161,7 +156,9 @@ include::xcode.adoc[]
 
 === R
 
+[[reference.portgroup.ruby]]
 === ruby
+include::ruby.adoc[]
 
 === rust_build
 
@@ -186,6 +183,7 @@ include::xcode.adoc[]
 === xcode_workaround
 
 === xcode
+include::xcode.adoc[]
 
 === xcodeversion
 

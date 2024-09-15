@@ -1,6 +1,3 @@
-[[reference.portgroup.github]]
-=== PortGroup github
-
 The `github` portgroup allows for efficient porting of software hosted
 on GitHub.
 
