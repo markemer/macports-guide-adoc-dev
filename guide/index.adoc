@@ -4,7 +4,7 @@
 :current-version: 2.10.1
 :font: icon
 
-WARNING: This is a draft of a migration from docbook at guide.macports.org
+WARNING: This is a draft of a migration from docbook at https://guide.macports.org
 
 include::intro.adoc[]
 
