@@ -18,3 +18,177 @@ include::python.adoc[]
 include::ruby.adoc[]
 
 include::xcode.adoc[]
+
+
+=== active_variants
+
+=== apache2
+
+=== app
+
+=== aspelldict
+
+=== bazel
+
+=== bitbucket
+
+=== boost
+
+=== cargo
+
+=== cargo_fetch
+
+=== cgit
+
+=== clang_dependency
+
+=== cmake
+
+=== codeberg
+
+=== common_lisp
+
+=== compiler_blacklist_versions
+
+=== compiler_wrapper
+
+=== compilers
+
+=== conflicts_build
+
+=== crossbinutils
+
+=== crossgcc
+
+=== crossgdb
+
+=== debug
+
+=== deprecated
+
+=== developerversion
+
+=== elisp
+
+=== fortran
+
+=== fuse
+
+=== gitea
+
+=== github
+
+=== gitlab
+
+=== gnu_info
+
+=== gnulib
+
+=== gnuradio
+
+=== gnustep
+
+=== gobject_introspection
+
+=== golang
+
+=== gpg_verify
+
+=== haskell_cabal
+
+=== haskell_stack
+
+=== hunspelldict
+
+=== janet
+
+=== java
+
+=== kde4
+
+=== legacysupport
+
+=== linear_algebra
+
+=== love
+
+=== lua
+
+=== luarocks_org
+
+=== luarocks
+
+=== makefile
+
+=== meson
+
+=== mpi
+
+=== mpiutil
+
+=== muniversal
+
+=== notabug
+
+=== npm
+
+=== obsolete
+
+=== ocaml
+
+=== octave
+
+=== perl5
+
+=== php
+
+=== pure
+
+=== python
+
+=== qmake
+
+=== qmake 5
+
+=== qt4
+
+=== qt5
+==== qt5_variables
+==== qt5_version_info
+
+=== qt6
+==== qt6_info
+
+=== R
+
+=== ruby
+
+=== rust_build
+
+=== rust
+
+=== select
+
+=== sourcehut
+
+=== stub
+
+=== texlive
+
+=== tree_sitter
+
+=== waf
+
+=== wxWidgets
+
+=== x11font
+
+=== xcode_workaround
+
+=== xcode
+
+=== xcodeversion
+
+=== xmlcatalog
+
+=== yelp
