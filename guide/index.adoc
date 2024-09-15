@@ -1,7 +1,10 @@
-= MacPorts Guide
+= MacPorts Draft Guide
 :toc: left
 :linkcss:
 :current-version: 2.10.1
+:font: icon
+
+WARNING: This is a draft of a migration from docbook at guide.macports.org
 
 include::intro.adoc[]
 
@@ -13,7 +16,7 @@ include::portfile-development.adoc[]
 
 include::portfile/reference.adoc[]
 
-include::portgroups/portgroups.adoc[]
+include::portgroups/index.adoc[]
 
 include::internals/internals.adoc[]
 
