@@ -149,3 +149,5 @@ post-fetch {
     system -W ${worksrcpath} "git submodule update --init"
 }
 ....
+
+Read the source: mp:group[github-1.0]

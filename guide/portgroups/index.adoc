@@ -84,7 +84,9 @@ existing portfiles that use these portgroups.
 === github
 include::groups/github.adoc[]
 
+[[reference.portgroup.gitlab]]
 === gitlab
+include::groups/gitlab.adoc[]
 
 === gnu_info
 
